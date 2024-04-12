@@ -7,6 +7,7 @@ defmodule MockixWeb.Router do
 
   scope "/api", MockixWeb do
     pipe_through :api
+    resources "/mocks", MockController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard in development

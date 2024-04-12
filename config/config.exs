@@ -9,7 +9,7 @@ import Config
 
 config :mockix,
   ecto_repos: [Mockix.Repo],
-  generators: [timestamp_type: :utc_datetime]
+  generators: [binary_id: true, timestamp_type: :utc_datetime]
 
 # Configures the endpoint
 config :mockix, MockixWeb.Endpoint,
