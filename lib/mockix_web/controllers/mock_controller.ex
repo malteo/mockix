@@ -22,14 +22,15 @@ defmodule MockixWeb.MockController do
   end
 
   def show(conn, %{"id" => id}) do
-    mock = Mocks.get_mock!(id)
-    render(conn, :show, mock: mock)
+    with {:ok, mock} <- Mocks.get_mock(id) do
+      render(conn, :show, mock: mock)
+    end
   end
 
   def delete(conn, %{"id" => id}) do
-    mock = Mocks.get_mock!(id)
-
-    with {:ok, %Mock{}} <- Mocks.delete_mock(mock) do
+    with {:ok, mock} <- Mocks.get_mock(id),
+         {:ok, %Mock{}} <- Mocks.delete_mock(mock)
+    do
       send_resp(conn, :no_content, "")
     end
   end

@@ -35,7 +35,12 @@ defmodule Mockix.Mocks do
       ** (Ecto.NoResultsError)
 
   """
-  def get_mock!(id), do: Repo.get!(Mock, id)
+  def get_mock(id) do
+    case Repo.get(Mock, id) do
+      nil -> {:error, :not_found}
+      mock -> {:ok, mock}
+    end
+  end
 
   @doc """
   Creates a mock.

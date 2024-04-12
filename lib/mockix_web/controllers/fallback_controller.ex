@@ -18,7 +18,7 @@ defmodule MockixWeb.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> put_view(html: MockixWeb.ErrorHTML, json: MockixWeb.ErrorJSON)
+    |> put_view(json: MockixWeb.ErrorJSON)
     |> render(:"404")
   end
 end
